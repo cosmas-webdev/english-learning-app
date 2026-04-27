@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Flashcards Pro | Par Ir. Cosmas MUSAFIRI MUGONGO</title>
+    <title>English Flashcards Pro | Apprentissage d'anglais</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json"> <meta name="theme-color" content="#6366f1">
     
     <script>
         tailwind.config = {
@@ -20,135 +21,90 @@
                 extend: {
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
-                        'playfair': ['Playfair Display', 'serif'],
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out',
                         'slide-up': 'slideUp 0.5s ease-out',
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'shimmer': 'shimmer 2s linear infinite',
-                        'gradient': 'gradient 8s ease infinite',
+                        'slide-down': 'slideDown 0.4s ease-out',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '25%': { transform: 'translateY(-15px) rotate(1deg)' },
-                            '75%': { transform: 'translateY(5px) rotate(-1deg)' },
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         pulseSoft: {
                             '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.7' },
+                            '50%': { opacity: '0.8' },
                         },
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' },
-                        },
-                        gradient: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                    },
-                    backgroundSize: {
-                        '300%': '300% 300%',
-                    },
+                    }
                 }
             }
         }
     </script>
     
     <style>
-        * {
-            scroll-behavior: smooth;
-        }
+        * { scroll-behavior: smooth; }
         
         body {
-            background: #0a0a1a;
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1040 30%, #1e0a3c 60%, #0d0b1e 100%);
+            background-attachment: fixed;
             overflow-x: hidden;
         }
         
-        /* Grille d'arrière-plan sophistiquée */
-        .bg-grid {
-            background-image: 
-                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-        
-        /* Orbes lumineuses d'arrière-plan */
-        .orb {
+        /* Effet de grain subtil */
+        body::before {
+            content: '';
             position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.15;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 0;
         }
         
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, #6366f1, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-        
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #a855f7, transparent 70%);
-            bottom: -150px;
-            left: -150px;
-            animation: orbFloat 25s ease-in-out infinite reverse;
-        }
-        
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #ec4899, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: orbFloat 18s ease-in-out infinite;
-        }
-        
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        
-        /* Glassmorphism avancé */
+        /* Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
         
-        .glass-hover:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.08);
+            transform: translateY(-2px);
         }
         
         /* Carte 3D */
         .card-3d {
-            perspective: 1500px;
+            perspective: 1200px;
         }
         
         .card-inner {
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
         }
         
@@ -159,24 +115,82 @@
         .card-face {
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            border-radius: 24px;
         }
         
         .card-back {
             transform: rotateY(180deg);
         }
         
-        /* Particules */
-        .particle {
-            position: absolute;
-            pointer-events: none;
-            animation: particleFloat 8s ease-in-out infinite;
+        /* Hamburger Menu */
+        .hamburger-line {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
         }
         
-        @keyframes particleFloat {
-            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            50% { transform: translateY(-40px) translateX(20px) rotate(180deg); opacity: 0.5; }
+        .hamburger-active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .hamburger-active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        
+        .hamburger-active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        /* Overlay menu mobile */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 30, 0.97);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mobile-menu-item {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #94a3b8;
+            padding: 0.75rem 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 80%;
+            max-width: 300px;
+        }
+        
+        .mobile-menu-item:hover,
+        .mobile-menu-item.active-mobile {
+            background: rgba(139, 92, 246, 0.15);
+            color: #c4b5fd;
+            transform: scale(1.02);
         }
         
         /* Confetti */
@@ -189,390 +203,349 @@
         
         @keyframes confettiFall {
             0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg) scale(0); opacity: 0; }
+            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
         }
         
-        /* Badge de notification */
-        .notification-badge {
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Toast notification */
+        .toast {
+            animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        @keyframes popIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
         }
         
-        /* Scrollbar luxueuse */
-        ::-webkit-scrollbar { width: 6px; }
+        /* Bouton avec effet shimmer */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -75%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transform: rotate(25deg);
+            transition: left 0.6s;
+        }
+        
+        .btn-shimmer:hover::after {
+            left: 125%;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899);
             border-radius: 10px;
         }
         
-        /* Effet de survol des boutons */
-        .btn-primary {
-            position: relative;
+        /* Empêcher le scroll quand le menu est ouvert */
+        body.no-scroll {
             overflow: hidden;
         }
         
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover::after {
-            left: 100%;
-        }
-        
-        /* Animation de chargement */
-        .skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        
-        /* Responsive - Mobile first déjà géré par Tailwind */
-        
-        /* Très petits écrans */
+        /* Responsive */
         @media (max-width: 380px) {
-            .card-3d {
-                width: 260px !important;
-                height: 160px !important;
-            }
-            .card-3d h3 {
-                font-size: 1.5rem !important;
-            }
+            .card-3d { width: 260px !important; height: 170px !important; }
+            .card-3d h3 { font-size: 1.8rem !important; }
         }
         
-        /* Mode sombre automatique respecté */
-        @media (prefers-color-scheme: light) {
-            body {
-                background: #f8fafc;
-                color: #1e293b;
-            }
-            .glass {
-                background: rgba(255, 255, 255, 0.7);
-                border-color: rgba(0, 0, 0, 0.06);
+        @media (max-width: 480px) {
+            .mobile-menu-item {
+                font-size: 1.1rem;
+                padding: 0.6rem 1.5rem;
             }
         }
     </style>
 </head>
-<body class="font-inter min-h-screen text-white antialiased">
+<body class="font-inter min-h-screen text-white antialiased relative">
 
-    <!-- Orbes d'arrière-plan -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    
-    <!-- Grille d'arrière-plan -->
-    <div class="bg-grid fixed inset-0 pointer-events-none z-0"></div>
-    
-    <!-- Particules -->
-    <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
-    
+    <!-- ==================== OVERLAY MENU MOBILE ==================== -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button onclick="navigateMobile('flashcards')" class="mobile-menu-item active-mobile" data-mobile-nav="flashcards">
+            <i class="fas fa-layer-group w-6 text-center"></i>
+            <span>Cartes de Vocabulaire</span>
+        </button>
+        <button onclick="navigateMobile('quiz')" class="mobile-menu-item" data-mobile-nav="quiz">
+            <i class="fas fa-brain w-6 text-center"></i>
+            <span>Quiz de Traduction</span>
+        </button>
+        <button onclick="navigateMobile('stats')" class="mobile-menu-item" data-mobile-nav="stats">
+            <i class="fas fa-chart-line w-6 text-center"></i>
+            <span>Statistiques</span>
+        </button>
+        <button onclick="navigateMobile('dictionary')" class="mobile-menu-item" data-mobile-nav="dictionary">
+            <i class="fas fa-book-open w-6 text-center"></i>
+            <span>Dictionnaire</span>
+        </button>
+        
+        <!-- Séparateur -->
+        <div class="w-48 h-px bg-white/10 my-2"></div>
+        
+        <!-- Score rapide dans le menu mobile -->
+        <div class="flex items-center gap-6 mt-2">
+            <div class="text-center">
+                <p class="text-xs text-gray-500 uppercase tracking-wider">🔥 Série</p>
+                <p id="mobile-streak-counter" class="font-bold text-amber-400 text-lg">0</p>
+            </div>
+            <div class="w-px h-8 bg-white/10"></div>
+            <div class="text-center">
+                <p class="text-xs text-gray-500 uppercase tracking-wider">⭐ Score</p>
+                <p id="mobile-total-score" class="font-bold text-purple-400 text-lg">0</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Conteneur principal -->
     <div class="relative z-10 min-h-screen flex flex-col">
         
-        <!-- ========== HEADER ========== -->
+        <!-- ==================== HEADER ==================== -->
         <header class="glass sticky top-0 z-50 border-b border-white/5">
-            <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-                <div class="flex items-center justify-between py-3 gap-2">
+            <div class="max-w-6xl mx-auto px-4 py-3">
+                <div class="flex items-center justify-between">
                     
-                    <!-- Logo & Titre -->
-                    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                        <div class="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
-                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl animate-gradient bg-300%"></div>
-                            <div class="absolute inset-0 flex items-center justify-center text-lg sm:text-2xl">
-                                📚
-                            </div>
+                    <!-- Logo -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-purple-500/20">
+                            📚
                         </div>
-                        <div class="hidden sm:block">
-                            <h1 class="text-lg lg:text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                English Flashcards Pro
+                        <div>
+                            <h1 class="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                                English Flashcards
                             </h1>
-                            <p class="text-xs text-gray-500">Par Ir. Cosmas MUSAFIRI MUGONGO</p>
-                        </div>
-                        <div class="sm:hidden">
-                            <h1 class="text-sm font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                                Flashcards Pro
-                            </h1>
+                            <p class="text-[10px] text-gray-500">Pro Edition</p>
                         </div>
                     </div>
                     
                     <!-- Navigation Desktop -->
-                    <nav class="hidden md:flex items-center gap-1 bg-white/[0.02] rounded-2xl p-1 border border-white/5">
+                    <nav class="hidden lg:flex items-center gap-1 bg-white/[0.03] rounded-2xl p-1 border border-white/5">
                         <button onclick="showSection('flashcards')" data-nav="flashcards" 
-                                class="nav-btn px-3 lg:px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-white/10 text-white">
+                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-white/10 text-white">
                             <i class="fas fa-layer-group text-xs"></i>
                             Cartes
                         </button>
                         <button onclick="showSection('quiz')" data-nav="quiz" 
-                                class="nav-btn px-3 lg:px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
+                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
                             <i class="fas fa-brain text-xs"></i>
                             Quiz
                         </button>
                         <button onclick="showSection('stats')" data-nav="stats" 
-                                class="nav-btn px-3 lg:px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
+                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
                             <i class="fas fa-chart-line text-xs"></i>
                             Stats
                         </button>
                         <button onclick="showSection('dictionary')" data-nav="dictionary" 
-                                class="nav-btn px-3 lg:px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
+                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
                             <i class="fas fa-book-open text-xs"></i>
                             Dico
                         </button>
                     </nav>
                     
-                    <!-- Score + Profil -->
-                    <div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-                        <div class="hidden sm:flex items-center gap-3 bg-white/[0.02] rounded-2xl px-3 py-1.5 border border-white/5">
-                            <div class="text-center">
-                                <p class="text-[10px] text-gray-500 uppercase tracking-wider">Série</p>
-                                <p id="streak-counter" class="font-bold text-amber-400 text-sm">0</p>
-                            </div>
-                            <div class="w-px h-6 bg-white/10"></div>
-                            <div class="text-center">
-                                <p class="text-[10px] text-gray-500 uppercase tracking-wider">Score</p>
-                                <p id="total-score" class="font-bold text-purple-400 text-sm">0</p>
-                            </div>
+                    <!-- Score rapide (Desktop) -->
+                    <div class="hidden sm:flex items-center gap-3 bg-white/[0.03] rounded-2xl px-4 py-2 border border-white/5">
+                        <div class="text-center">
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">Série</p>
+                            <p id="streak-counter" class="font-bold text-amber-400">0</p>
                         </div>
-                        <!-- Avatar développeur -->
-                        <div class="hidden lg:flex items-center gap-2 bg-white/[0.02] rounded-2xl px-3 py-1.5 border border-white/5">
-                            <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold">
-                                CM
-                            </div>
-                            <div class="text-xs">
-                                <p class="font-medium text-gray-300">Ir. Cosmas</p>
-                                <p class="text-[10px] text-gray-500">Développeur</p>
-                            </div>
+                        <div class="w-px h-5 bg-white/10"></div>
+                        <div class="text-center">
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">Score</p>
+                            <p id="total-score" class="font-bold text-purple-400">0</p>
                         </div>
                     </div>
+                    
+                    <!-- Bouton Hamburger (Mobile) -->
+                    <button id="hamburger-btn" onclick="toggleMobileMenu()" 
+                            class="lg:hidden relative z-50 flex flex-col gap-1.5 p-2 rounded-xl hover:bg-white/5 transition-colors"
+                            aria-label="Menu de navigation">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
                 </div>
-                
-                <!-- Navigation Mobile -->
-                <nav class="md:hidden flex justify-center gap-1 pb-3 overflow-x-auto">
-                    <button onclick="showSection('flashcards')" data-nav="flashcards" 
-                            class="nav-btn-mobile flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 bg-white/10 text-white">
-                        <i class="fas fa-layer-group mr-1"></i> Cartes
-                    </button>
-                    <button onclick="showSection('quiz')" data-nav="quiz" 
-                            class="nav-btn-mobile flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 text-gray-400">
-                        <i class="fas fa-brain mr-1"></i> Quiz
-                    </button>
-                    <button onclick="showSection('stats')" data-nav="stats" 
-                            class="nav-btn-mobile flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 text-gray-400">
-                        <i class="fas fa-chart-line mr-1"></i> Stats
-                    </button>
-                    <button onclick="showSection('dictionary')" data-nav="dictionary" 
-                            class="nav-btn-mobile flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 text-gray-400">
-                        <i class="fas fa-book-open mr-1"></i> Dico
-                    </button>
-                </nav>
             </div>
         </header>
 
-        <!-- ========== MAIN CONTENT ========== -->
-        <main class="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-6 md:py-10">
             
-            <!-- ==================== SECTION FLASHCARDS ==================== -->
+            <!-- ========== SECTION FLASHCARDS ========== -->
             <section id="flashcards-section" class="animate-fade-in">
-                <div class="text-center mb-6 sm:mb-8">
-                    <span class="inline-block bg-indigo-500/10 text-indigo-400 text-xs font-medium px-3 py-1 rounded-full mb-3 border border-indigo-500/20">
-                        📝 Apprentissage
+                <div class="text-center mb-6 md:mb-8">
+                    <span class="inline-block bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-indigo-500/20">
+                        📝 VOCABULAIRE
                     </span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
-                        Cartes de <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Vocabulaire</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
+                        Cartes de <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Mémorisation</span>
                     </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Cliquez sur la carte pour découvrir la traduction</p>
-                    <div class="flex items-center justify-center gap-3 mt-3">
-                        <span class="text-xs text-gray-600 bg-white/5 px-3 py-1 rounded-full border border-white/5">
-                            Mot <span id="current-card-number" class="text-purple-400 font-bold">1</span> / <span id="total-cards">30</span>
-                        </span>
-                    </div>
+                    <p class="text-gray-500 text-sm sm:text-base">Cliquez sur la carte pour voir la traduction</p>
+                    <p class="text-xs text-gray-600 mt-2">
+                        Mot <span id="current-card-number" class="text-purple-400 font-bold">1</span> sur <span id="total-cards">3000+</span>
+                    </p>
                 </div>
                 
                 <!-- Carte 3D -->
-                <div class="flex justify-center mb-6 sm:mb-8">
-                    <div class="card-3d w-[280px] h-[180px] sm:w-[340px] sm:h-[210px] md:w-[400px] md:h-[240px] lg:w-[450px] lg:h-[270px] cursor-pointer group" onclick="flipCard()">
+                <div class="flex justify-center mb-6 md:mb-8">
+                    <div class="card-3d w-[280px] h-[180px] sm:w-[360px] sm:h-[220px] md:w-[440px] md:h-[260px] cursor-pointer" onclick="flipCard()">
                         <div id="card-inner" class="card-inner relative w-full h-full">
                             <!-- Face Anglais -->
-                            <div class="card-face absolute inset-0 rounded-3xl flex flex-col items-center justify-center overflow-hidden shadow-2xl" 
-                                 style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #4f46e5 100%);">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-pink-500/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
-                                <span class="relative text-xs sm:text-sm text-indigo-300/80 mb-2 sm:mb-3 font-medium tracking-wider uppercase">
-                                    🇬🇧 English
-                                </span>
-                                <h3 id="english-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"></h3>
-                                <div class="absolute bottom-3 right-4 sm:bottom-4 sm:right-5 text-white/10 group-hover:text-white/30 transition-colors">
-                                    <i class="fas fa-sync-alt text-xs sm:text-sm"></i>
+                            <div class="card-face absolute inset-0 flex flex-col items-center justify-center shadow-2xl shadow-indigo-500/10" 
+                                 style="background: linear-gradient(145deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);">
+                                <div class="absolute top-4 right-4 w-20 h-20 bg-white/3 rounded-full"></div>
+                                <div class="absolute bottom-4 left-4 w-16 h-16 bg-pink-500/5 rounded-full"></div>
+                                <span class="relative text-xs font-semibold text-indigo-300/70 uppercase tracking-widest mb-3">English</span>
+                                <h3 id="english-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center"></h3>
+                                <div class="absolute bottom-6 right-6 text-white/15 text-sm">
+                                    <i class="fas fa-sync-alt"></i>
                                 </div>
                             </div>
                             <!-- Face Français -->
-                            <div class="card-face card-back absolute inset-0 rounded-3xl flex flex-col items-center justify-center overflow-hidden shadow-2xl"
-                                 style="background: linear-gradient(135deg, #4c0519 0%, #831843 30%, #be185d 60%, #db2777 100%);">
-                                <div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 -translate-x-1/2"></div>
-                                <div class="absolute bottom-0 right-0 w-24 h-24 bg-indigo-500/10 rounded-full translate-y-1/2 translate-x-1/2"></div>
-                                <span class="relative text-xs sm:text-sm text-pink-300/80 mb-2 sm:mb-3 font-medium tracking-wider uppercase">
-                                    🇫🇷 Français
-                                </span>
-                                <h3 id="french-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"></h3>
-                                <span id="category-badge" class="relative text-[10px] sm:text-xs bg-white/15 px-2 sm:px-3 py-1 rounded-full mt-2 sm:mt-3 font-medium"></span>
+                            <div class="card-face card-back absolute inset-0 flex flex-col items-center justify-center shadow-2xl shadow-pink-500/10"
+                                 style="background: linear-gradient(145deg, #4c0519 0%, #831843 40%, #be185d 100%);">
+                                <div class="absolute top-4 left-4 w-20 h-20 bg-white/3 rounded-full"></div>
+                                <div class="absolute bottom-4 right-4 w-16 h-16 bg-indigo-500/5 rounded-full"></div>
+                                <span class="relative text-xs font-semibold text-pink-300/70 uppercase tracking-widest mb-3">Français</span>
+                                <h3 id="french-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center"></h3>
+                                <span id="category-badge" class="relative text-xs bg-white/10 px-3 py-1 rounded-full mt-3 font-medium"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Contrôles -->
-                <div class="flex justify-center gap-2 sm:gap-3 lg:gap-4 flex-wrap">
+                <div class="flex justify-center gap-2 sm:gap-3 flex-wrap">
                     <button onclick="flipCard()" 
-                            class="glass-hover glass px-3 py-2 sm:px-5 sm:py-3 rounded-2xl text-sm font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 hover:scale-105 text-gray-300 hover:text-white">
+                            class="glass-card px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white">
                         <i class="fas fa-sync-alt text-xs"></i>
-                        <span class="hidden sm:inline">Retourner</span>
+                        <span class="hidden xs:inline">Retourner</span>
                     </button>
                     <button onclick="previousCard()" 
-                            class="glass-hover glass px-3 py-2 sm:px-5 sm:py-3 rounded-2xl text-sm font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 hover:scale-105 text-gray-300 hover:text-white">
+                            class="glass-card px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white">
                         <i class="fas fa-chevron-left text-xs"></i>
-                        <span class="hidden sm:inline">Précédent</span>
+                        <span class="hidden xs:inline">Précédent</span>
                     </button>
                     <button onclick="markAsKnown()" 
-                            class="btn-primary bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl text-sm font-semibold transition-all duration-300 flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-emerald-500/20">
+                            class="btn-shimmer bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-emerald-500/20">
                         <i class="fas fa-check text-xs"></i>
                         Je sais !
                     </button>
                     <button onclick="nextCard()" 
-                            class="btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl text-sm font-semibold transition-all duration-300 flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-purple-500/20">
-                        <span class="hidden sm:inline">Suivant</span>
+                            class="btn-shimmer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-purple-500/20">
+                        <span class="hidden xs:inline">Suivant</span>
                         <i class="fas fa-chevron-right text-xs"></i>
                     </button>
                 </div>
                 
-                <!-- Progression -->
-                <div class="mt-8 sm:mt-10 max-w-lg mx-auto">
-                    <div class="flex justify-between text-xs sm:text-sm text-gray-500 mb-2">
+                <!-- Barre de progression -->
+                <div class="mt-8 md:mt-10 max-w-md mx-auto">
+                    <div class="flex justify-between text-xs text-gray-500 mb-2">
                         <span>Progression</span>
                         <span id="progress-percentage" class="text-purple-400 font-semibold">0%</span>
                     </div>
-                    <div class="h-1.5 sm:h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
-                        <div id="progress-bar" class="h-full rounded-full transition-all duration-700 ease-out" 
-                             style="width: 0%; background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899); background-size: 200% 100%; animation: shimmer 2s linear infinite;">
+                    <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full rounded-full transition-all duration-700" 
+                             style="width: 0%; background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ==================== SECTION QUIZ ==================== -->
+            <!-- ========== SECTION QUIZ ========== -->
             <section id="quiz-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 sm:mb-8">
-                    <span class="inline-block bg-amber-500/10 text-amber-400 text-xs font-medium px-3 py-1 rounded-full mb-3 border border-amber-500/20">
-                        🎯 Évaluation
+                <div class="text-center mb-6 md:mb-8">
+                    <span class="inline-block bg-amber-500/10 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-amber-500/20">
+                        🎯 QUIZ
                     </span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
-                        Quiz de <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Traduction</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
+                        Test de <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Traduction</span>
                     </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Traduisez le mot affiché en français</p>
+                    <p class="text-gray-500 text-sm sm:text-base">Traduisez le mot en français</p>
                 </div>
                 
-                <div class="max-w-xl mx-auto glass rounded-3xl p-6 sm:p-8 lg:p-10 text-center border border-white/5">
-                    <div class="mb-4 sm:mb-6">
-                        <span class="text-xs text-gray-500 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
-                            Question <span id="quiz-question-number" class="text-purple-400 font-bold">1</span> / 10
-                        </span>
-                    </div>
+                <div class="max-w-lg mx-auto glass-card rounded-3xl p-6 sm:p-8 md:p-10 text-center">
+                    <p class="text-xs text-gray-500 mb-4">Question <span id="quiz-question-number" class="text-purple-400 font-bold">1</span>/10</p>
+                    <p class="text-sm text-gray-400 mb-2">Traduisez :</p>
+                    <h3 id="quiz-word" class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"></h3>
                     
-                    <p class="text-sm sm:text-base text-gray-500 mb-3 sm:mb-4 font-medium">Traduisez en français :</p>
-                    <h3 id="quiz-word" class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"></h3>
-                    
-                    <div class="relative max-w-xs mx-auto mb-5 sm:mb-6">
-                        <input type="text" id="quiz-answer" placeholder="Votre réponse..." 
-                               class="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-5 py-3 sm:py-4 text-base sm:text-lg text-center focus:outline-none focus:border-purple-400/50 focus:ring-4 focus:ring-purple-400/10 transition-all placeholder-gray-600 text-white"
-                               onkeypress="if(event.key === 'Enter') checkQuizAnswer()" autocomplete="off">
-                    </div>
+                    <input type="text" id="quiz-answer" placeholder="Votre réponse..." 
+                           class="w-full max-w-xs bg-white/5 border-2 border-white/10 rounded-2xl px-5 py-3 text-base sm:text-lg text-center focus:outline-none focus:border-purple-400/50 transition-all placeholder-gray-600 text-white mb-5"
+                           onkeypress="if(event.key === 'Enter') checkQuizAnswer()" autocomplete="off">
                     
                     <button onclick="checkQuizAnswer()" 
-                            class="btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-xl shadow-purple-500/20">
+                            class="btn-shimmer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 sm:px-8 py-3 rounded-2xl font-bold text-base sm:text-lg transition-all hover:scale-105 shadow-xl shadow-purple-500/20">
                         <i class="fas fa-check-circle mr-2"></i> Vérifier
                     </button>
                     
-                    <div id="quiz-result" class="mt-5 sm:mt-6 text-lg sm:text-xl font-bold min-h-8 transition-all duration-300"></div>
+                    <div id="quiz-result" class="mt-5 sm:mt-6 text-lg sm:text-xl font-bold min-h-8"></div>
                     
                     <button id="next-quiz-btn" onclick="nextQuizQuestion()" 
-                            class="hidden mt-4 bg-white/5 hover:bg-white/10 px-5 py-2.5 rounded-xl transition-all text-sm font-medium border border-white/5">
-                        Question suivante <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            class="hidden mt-4 bg-white/5 hover:bg-white/10 px-5 sm:px-6 py-2.5 rounded-xl transition-all text-sm font-medium">
+                        Question suivante <i class="fas fa-arrow-right ml-1"></i>
                     </button>
                 </div>
             </section>
 
-            <!-- ==================== SECTION STATISTIQUES ==================== -->
+            <!-- ========== SECTION STATISTIQUES ========== -->
             <section id="stats-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 sm:mb-8">
-                    <span class="inline-block bg-rose-500/10 text-rose-400 text-xs font-medium px-3 py-1 rounded-full mb-3 border border-rose-500/20">
-                        📊 Analyse
+                <div class="text-center mb-6 md:mb-8">
+                    <span class="inline-block bg-rose-500/10 text-rose-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-rose-500/20">
+                        📊 STATISTIQUES
                     </span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
-                        Vos <span class="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">Statistiques</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
+                        Votre <span class="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">Progression</span>
                     </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Suivez votre progression d'apprentissage</p>
+                    <p class="text-gray-500 text-sm sm:text-base">Suivez vos performances</p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                    <div class="glass rounded-3xl p-5 sm:p-6 text-center border border-white/5 hover:border-purple-500/20 transition-all duration-500 group">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-2xl bg-purple-500/10 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300">
-                            📝
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-400 mb-1" id="stats-words-learned">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500">Mots appris</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
+                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
+                        <div class="text-2xl sm:text-3xl mb-3">📝</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-purple-400" id="stats-words-learned">0</h3>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Mots appris</p>
                     </div>
-                    <div class="glass rounded-3xl p-5 sm:p-6 text-center border border-white/5 hover:border-emerald-500/20 transition-all duration-500 group">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300">
-                            🎯
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-400 mb-1" id="stats-quiz-correct">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500">Quiz réussis</p>
+                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
+                        <div class="text-2xl sm:text-3xl mb-3">🎯</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-emerald-400" id="stats-quiz-correct">0</h3>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Quiz réussis</p>
                     </div>
-                    <div class="glass rounded-3xl p-5 sm:p-6 text-center border border-white/5 hover:border-amber-500/20 transition-all duration-500 group">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-2xl bg-amber-500/10 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300">
-                            🔥
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-amber-400 mb-1" id="stats-streak">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500">Meilleure série</p>
+                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
+                        <div class="text-2xl sm:text-3xl mb-3">🔥</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-amber-400" id="stats-streak">0</h3>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Meilleure série</p>
                     </div>
                 </div>
                 
-                <div class="glass rounded-3xl p-6 sm:p-8 lg:p-10 text-center border border-white/5 max-w-lg mx-auto">
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-400 mb-4">🏆 Niveau actuel</h3>
-                    <div id="level-badge" class="text-5xl sm:text-6xl lg:text-7xl mb-3 sm:mb-4"></div>
-                    <p id="level-text" class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"></p>
-                    <p class="text-xs sm:text-sm text-gray-600 mt-2">Continuez à apprendre pour progresser !</p>
+                <div class="glass-card rounded-3xl p-6 sm:p-8 text-center max-w-sm mx-auto">
+                    <p class="text-gray-400 mb-2 text-sm sm:text-base">Niveau actuel</p>
+                    <div id="level-badge" class="text-5xl sm:text-6xl mb-3"></div>
+                    <p id="level-text" class="text-xl sm:text-2xl font-bold text-purple-400"></p>
                 </div>
             </section>
 
-            <!-- ==================== SECTION DICTIONNAIRE ==================== -->
+            <!-- ========== SECTION DICTIONNAIRE ========== -->
             <section id="dictionary-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 sm:mb-8">
-                    <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-medium px-3 py-1 rounded-full mb-3 border border-cyan-500/20">
-                        📖 Référence
+                <div class="text-center mb-6 md:mb-8">
+                    <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-cyan-500/20">
+                        📖 DICTIONNAIRE
                     </span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
-                        <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Dictionnaire</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
+                        <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Tous les mots</span>
                     </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Explorez tous les mots disponibles</p>
+                    <p class="text-gray-500 text-sm sm:text-base">3000+ mots à explorer</p>
                 </div>
                 
-                <div class="max-w-lg mx-auto mb-6 sm:mb-8">
+                <div class="max-w-md mx-auto mb-6 sm:mb-8">
                     <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-gray-500"></i>
-                        </div>
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
                         <input type="text" id="dictionary-search" placeholder="Rechercher un mot..." 
-                               class="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-3 sm:py-4 pl-11 pr-4 text-sm sm:text-base focus:outline-none focus:border-cyan-400/50 focus:ring-4 focus:ring-cyan-400/10 transition-all placeholder-gray-600 text-white"
+                               class="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-3 pl-11 pr-4 text-sm sm:text-base focus:outline-none focus:border-cyan-400/50 transition-all placeholder-gray-600 text-white"
                                onkeyup="searchDictionary()" autocomplete="off">
                     </div>
                 </div>
@@ -584,45 +557,44 @@
 
         </main>
 
-        <!-- ========== FOOTER ========== -->
+        <!-- ==================== FOOTER ==================== -->
         <footer class="border-t border-white/5 mt-auto">
-            <div class="max-w-7xl mx-auto px-4 py-6 sm:py-8">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <!-- Copyright -->
-                    <div class="text-center md:text-left">
-                        <p class="text-sm text-gray-500">
+            <div class="max-w-6xl mx-auto px-4 py-5 sm:py-6">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
+                    
+                    <!-- Signature développeur -->
+                    <div>
+                        <p class="text-xs text-gray-500">
                             © 2026 <span class="text-purple-400 font-semibold">English Flashcards Pro</span>
                         </p>
-                        <p class="text-xs text-gray-600 mt-1">
-                            Développé par <span class="text-white font-semibold">Ir. Cosmas MUSAFIRI MUGONGO</span>
+                        <p class="text-xs text-gray-600 mt-0.5">
+                            Développé par <span class="text-gray-300 font-medium">Ir. Cosmas MUSAFIRI MUGONGO</span>
                         </p>
                     </div>
                     
-                    <!-- Tech Stack -->
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <span class="text-[10px] sm:text-xs bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
+                    <!-- Technologies -->
+                    <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
                             <i class="fab fa-html5 text-orange-400 mr-1"></i> HTML5
                         </span>
-                        <span class="text-[10px] sm:text-xs bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
+                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
                             <i class="fab fa-css3-alt text-blue-400 mr-1"></i> Tailwind CSS
                         </span>
-                        <span class="text-[10px] sm:text-xs bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
+                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
                             <i class="fab fa-js text-yellow-400 mr-1"></i> JavaScript
                         </span>
-                        <span class="text-[10px] sm:text-xs bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
+                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
                             <i class="fab fa-git-alt text-red-400 mr-1"></i> Git/GitHub
                         </span>
                     </div>
                     
                     <!-- Raccourcis -->
-                    <div class="text-center md:text-right">
-                        <p class="text-[10px] sm:text-xs text-gray-600">
-                            Raccourcis :
-                            <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px] border border-white/5">Espace</kbd>
-                            <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px] border border-white/5">← →</kbd>
-                            <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px] border border-white/5">Entrée</kbd>
-                        </p>
-                    </div>
+                    <p class="text-[10px] text-gray-600">
+                        Raccourcis : 
+                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">Espace</kbd>
+                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">← →</kbd>
+                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">Entrée</kbd>
+                    </p>
                 </div>
             </div>
         </footer>
@@ -630,5 +602,70 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <!-- Script pour le menu hamburger -->
+    <script>
+        // ============================================
+        // MENU HAMBURGER MOBILE
+        // ============================================
+        let isMenuOpen = false;
+        
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
+            
+            if (isMenuOpen) {
+                overlay.classList.add('active');
+                hamburger.classList.add('hamburger-active');
+                document.body.classList.add('no-scroll');
+            } else {
+                overlay.classList.remove('active');
+                hamburger.classList.remove('hamburger-active');
+                document.body.classList.remove('no-scroll');
+            }
+        }
+        
+        function navigateMobile(sectionName) {
+            // Fermer le menu
+            isMenuOpen = false;
+            document.getElementById('mobile-menu-overlay').classList.remove('active');
+            document.getElementById('hamburger-btn').classList.remove('hamburger-active');
+            document.body.classList.remove('no-scroll');
+            
+            // Mettre à jour les classes actives dans le menu mobile
+            document.querySelectorAll('.mobile-menu-item').forEach(item => {
+                item.classList.remove('active-mobile');
+                if (item.dataset.mobileNav === sectionName) {
+                    item.classList.add('active-mobile');
+                }
+            });
+            
+            // Naviguer vers la section
+            showSection(sectionName);
+        }
+        
+        // Synchroniser les scores mobiles
+        function syncMobileScores() {
+            const streak = document.getElementById('streak-counter')?.textContent || '0';
+            const score = document.getElementById('total-score')?.textContent || '0';
+            const mobileStreak = document.getElementById('mobile-streak-counter');
+            const mobileScore = document.getElementById('mobile-total-score');
+            if (mobileStreak) mobileStreak.textContent = streak;
+            if (mobileScore) mobileScore.textContent = score;
+        }
+        
+        // Observer les changements de score
+        setInterval(syncMobileScores, 1000);
+        
+        // Fermer le menu avec la touche Echap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMobileMenu();
+            }
+        });
+        
+        console.log('📱 Menu hamburger mobile initialisé');
+    </script>
 </body>
 </html>
