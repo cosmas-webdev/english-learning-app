@@ -1,671 +1,445 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>English Flashcards Pro | Apprentissage d'anglais</title>
+    <meta name="description" content="Application professionnelle de flashcards pour apprendre l'anglais avec 3000+ mots, quiz de traduction et suivi de progression.">
+    <meta name="author" content="Ir. Cosmas MUSAFIRI MUGONGO">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#0284c7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="English Flashcards">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="English Flashcards Pro">
+    
+    <!-- Icônes Apple -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230284c7'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='white'>📚</text></svg>">
+    
+    <!-- Icon PWA -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230284c7'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='white'>📚</text></svg>">
+    
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22English%20Flashcards%20Pro%22%2C%22short_name%22%3A%22Flashcards%22%2C%22description%22%3A%22Application%20de%20flashcards%20pour%20apprendre%20l'anglais%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%230284c7%22%2C%22orientation%22%3A%22portrait-primary%22%2C%22lang%22%3A%22fr%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Crect%20width%3D'100'%20height%3D'100'%20rx%3D'20'%20fill%3D'%230284c7'%2F%3E%3Ctext%20x%3D'50'%20y%3D'65'%20font-size%3D'50'%20text-anchor%3D'middle'%20fill%3D'white'%3E📚%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="manifest" href="manifest.json"> <meta name="theme-color" content="#6366f1">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'slide-down': 'slideDown 0.4s ease-out',
-                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideDown: {
-                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        pulseSoft: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.8' },
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        * { scroll-behavior: smooth; }
-        
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-accent: #f0f9ff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --accent-light: #f0f9ff;
+            --accent-text: #0284c7;
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --error: #dc2626;
+            --error-light: #fef2f2;
+            --card-front: linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #334155 100%);
+            --card-front-text: #e0f2fe;
+            --card-back: linear-gradient(145deg, #0c4a6e 0%, #0369a1 40%, #0284c7 100%);
+            --card-back-text: #e0f2fe;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-accent: #0c4a6e;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border-color: #334155;
+            --border-light: #1e293b;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --accent-light: #0c4a6e;
+            --accent-text: #38bdf8;
+            --success: #34d399;
+            --success-light: #064e3b;
+            --error: #f87171;
+            --error-light: #7f1d1d;
+            --card-front: linear-gradient(145deg, #1e293b 0%, #334155 40%, #475569 100%);
+            --card-front-text: #e0f2fe;
+            --card-back: linear-gradient(145deg, #0c4a6e 0%, #0369a1 40%, #0284c7 100%);
+            --card-back-text: #e0f2fe;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        * { font-family: "Inter", sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background: linear-gradient(135deg, #0f0c29 0%, #1a1040 30%, #1e0a3c 60%, #0d0b1e 100%);
-            background-attachment: fixed;
-            overflow-x: hidden;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6; min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
         }
-        
-        /* Effet de grain subtil */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.08);
-            transform: translateY(-2px);
-        }
-        
+
+        .app-container { max-width: 1200px; margin: 0 auto; background-color: var(--bg-primary); min-height: 100vh; box-shadow: var(--shadow-xl); }
+
+        /* Bannière installation */
+        .install-banner { position: fixed; bottom: 0; left: 0; right: 0; background-color: var(--bg-primary); border-top: 2px solid var(--accent); box-shadow: 0 -4px 20px rgba(0,0,0,0.15); z-index: 2000; padding: 1rem 1.25rem; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .install-banner.show { transform: translateY(0); }
+        .install-banner-content { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 600px; margin: 0 auto; }
+        .install-banner-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; background-color: var(--accent-light); }
+        .install-banner-text { flex: 1; min-width: 0; }
+        .install-banner-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.15rem; }
+        .install-banner-text p { font-size: 0.8rem; color: var(--text-secondary); margin: 0; }
+        .install-banner-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+        .install-btn { padding: 0.6rem 1.2rem; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+        .install-btn-primary { background-color: var(--accent); color: white; }
+        .install-btn-secondary { background-color: var(--bg-tertiary); color: var(--text-secondary); }
+        @media (max-width: 480px) { .install-banner-content { flex-direction: column; text-align: center; } .install-banner-actions { width: 100%; justify-content: center; } }
+
+        /* Menu mobile */
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 300px; height: 100vh; background-color: var(--bg-primary); box-shadow: var(--shadow-xl); z-index: 1000; padding: 2rem 1.5rem; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; border-right: 1px solid var(--border-color); }
+        .mobile-menu.open { transform: translateX(0); }
+        .menu-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        body.menu-open { overflow: hidden; }
+
+        .burger-btn { display: flex; flex-direction: column; justify-content: space-between; width: 26px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001; }
+        .burger-btn span { width: 100%; height: 2.5px; background-color: var(--text-primary); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 4px; }
+        .burger-btn.active span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+        .burger-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .burger-btn.active span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+        .close-menu { position: absolute; top: 1.25rem; right: 1.25rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--bg-tertiary); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease; color: var(--text-primary); }
+        .close-menu:hover { background-color: var(--accent); color: white; border-color: var(--accent); transform: rotate(90deg); }
+
+        .mobile-nav-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; font-size: 1rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); transition: all 0.25s ease; margin-bottom: 0.25rem; cursor: pointer; }
+        .mobile-nav-link:hover { background-color: var(--accent-light); color: var(--accent-text); transform: translateX(4px); }
+        .mobile-nav-link.active-mobile { background-color: var(--accent-light); color: var(--accent-text); font-weight: 600; }
+
+        .nav-btn { position: relative; padding: 0.6rem 1.2rem; border-radius: var(--radius-md); transition: all 0.3s ease; color: var(--text-secondary); background: transparent; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-btn:hover { color: var(--accent-text); background-color: var(--accent-light); }
+        .nav-btn.active { color: white; background-color: var(--accent); font-weight: 600; box-shadow: var(--shadow-md); }
+        .nav-btn.active:hover { background-color: var(--accent-hover); color: white; }
+
         /* Carte 3D */
-        .card-3d {
-            perspective: 1200px;
-        }
-        
-        .card-inner {
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-        
-        .card-inner.flipped {
-            transform: rotateY(180deg);
-        }
-        
-        .card-face {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 24px;
-        }
-        
-        .card-back {
-            transform: rotateY(180deg);
-        }
-        
-        /* Hamburger Menu */
-        .hamburger-line {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: #e2e8f0;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-        
-        .hamburger-active .hamburger-line:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        
-        .hamburger-active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        
-        .hamburger-active .hamburger-line:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-        
-        /* Overlay menu mobile */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(10, 10, 30, 0.97);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            z-index: 40;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .mobile-menu-item {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #94a3b8;
-            padding: 0.75rem 2rem;
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            width: 80%;
-            max-width: 300px;
-        }
-        
-        .mobile-menu-item:hover,
-        .mobile-menu-item.active-mobile {
-            background: rgba(139, 92, 246, 0.15);
-            color: #c4b5fd;
-            transform: scale(1.02);
-        }
-        
-        /* Confetti */
-        .confetti-piece {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            animation: confettiFall linear forwards;
-        }
-        
-        @keyframes confettiFall {
-            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
-        }
-        
-        /* Toast notification */
-        .toast {
-            animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        @keyframes slideInRight {
-            0% { transform: translateX(100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        
-        /* Bouton avec effet shimmer */
-        .btn-shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-shimmer::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -75%;
-            width: 50%;
-            height: 200%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transform: rotate(25deg);
-            transition: left 0.6s;
-        }
-        
-        .btn-shimmer:hover::after {
-            left: 125%;
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899);
-            border-radius: 10px;
-        }
-        
-        /* Empêcher le scroll quand le menu est ouvert */
-        body.no-scroll {
-            overflow: hidden;
-        }
-        
-        /* Responsive */
-        @media (max-width: 380px) {
-            .card-3d { width: 260px !important; height: 170px !important; }
-            .card-3d h3 { font-size: 1.8rem !important; }
-        }
-        
-        @media (max-width: 480px) {
-            .mobile-menu-item {
-                font-size: 1.1rem;
-                padding: 0.6rem 1.5rem;
-            }
-        }
+        .card-3d { perspective: 1500px; filter: drop-shadow(var(--shadow-xl)); }
+        .card-inner { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        .card-inner.flipped { transform: rotateY(180deg); }
+        .card-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius-2xl); position: relative; overflow: hidden; }
+        .card-face::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.06) 0%, transparent 50%); pointer-events: none; }
+        .card-back { transform: rotateY(180deg); }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; text-decoration: none; }
+        .btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.3); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+        .btn:active::after { width: 300px; height: 300px; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.3); }
+        .btn-success { background-color: var(--success); color: white; }
+        .btn-success:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3); }
+        .btn-outline { background-color: var(--bg-primary); color: var(--text-secondary); border: 1.5px solid var(--border-color); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-text); background-color: var(--accent-light); }
+
+        @keyframes slideInRight { 0% { transform: translateX(120px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.6s ease-out; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+
+        .section-badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: var(--accent-light); color: var(--accent-text); font-size: 0.8rem; font-weight: 600; padding: 0.4rem 1rem; border-radius: 9999px; margin-bottom: 0.75rem; letter-spacing: 0.03em; }
+
+        .stat-card { background-color: var(--bg-primary); border: 1.5px solid var(--border-color); border-radius: var(--radius-xl); padding: 1.75rem 1.5rem; text-align: center; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+        .stat-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); margin: 0 auto 0.75rem; font-size: 1.5rem; background-color: var(--accent-light); }
+
+        .input-field { width: 100%; background-color: var(--bg-primary); border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 0.85rem 1.25rem; font-size: 1rem; color: var(--text-primary); transition: all 0.3s ease; outline: none; }
+        .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.08); }
+        .input-field::placeholder { color: var(--text-muted); }
+
+        .progress-bar { height: 10px; background-color: var(--bg-tertiary); border-radius: 9999px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8, #0284c7); background-size: 200% 100%; border-radius: 9999px; transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); animation: shimmer 2s ease-in-out infinite; }
+        @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+        .lang-btn { padding: 0.35rem 0.7rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; cursor: pointer; border: 2px solid var(--border-color); background-color: var(--bg-primary); color: var(--text-secondary); transition: all 0.2s ease; letter-spacing: 0.5px; }
+        .lang-btn.active { background-color: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2); }
+        .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent-text); }
+
+        .mobile-lang-switcher { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .mobile-lang-switcher span { font-size: 0.8rem; color: var(--text-muted); }
+
+        @media (max-width: 380px) { .card-3d { width: 260px !important; height: 170px !important; } .card-3d h3 { font-size: 1.8rem !important; } }
+        @media (max-width: 640px) { .stat-card { padding: 1.25rem 1rem; } }
     </style>
 </head>
-<body class="font-inter min-h-screen text-white antialiased relative">
+<body>
 
-    <!-- ==================== OVERLAY MENU MOBILE ==================== -->
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <button onclick="navigateMobile('flashcards')" class="mobile-menu-item active-mobile" data-mobile-nav="flashcards">
-            <i class="fas fa-layer-group w-6 text-center"></i>
-            <span>Cartes de Vocabulaire</span>
+<div class="app-container">
+
+    <div id="menuOverlay" class="menu-overlay lg:hidden"></div>
+
+    <!-- Menu Mobile -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden">
+        <button id="closeMenuBtn" class="close-menu" aria-label="Fermer le menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
-        <button onclick="navigateMobile('quiz')" class="mobile-menu-item" data-mobile-nav="quiz">
-            <i class="fas fa-brain w-6 text-center"></i>
-            <span>Quiz de Traduction</span>
-        </button>
-        <button onclick="navigateMobile('stats')" class="mobile-menu-item" data-mobile-nav="stats">
-            <i class="fas fa-chart-line w-6 text-center"></i>
-            <span>Statistiques</span>
-        </button>
-        <button onclick="navigateMobile('dictionary')" class="mobile-menu-item" data-mobile-nav="dictionary">
-            <i class="fas fa-book-open w-6 text-center"></i>
-            <span>Dictionnaire</span>
-        </button>
-        
-        <!-- Séparateur -->
-        <div class="w-48 h-px bg-white/10 my-2"></div>
-        
-        <!-- Score rapide dans le menu mobile -->
-        <div class="flex items-center gap-6 mt-2">
-            <div class="text-center">
-                <p class="text-xs text-gray-500 uppercase tracking-wider">🔥 Série</p>
-                <p id="mobile-streak-counter" class="font-bold text-amber-400 text-lg">0</p>
-            </div>
-            <div class="w-px h-8 bg-white/10"></div>
-            <div class="text-center">
-                <p class="text-xs text-gray-500 uppercase tracking-wider">⭐ Score</p>
-                <p id="mobile-total-score" class="font-bold text-purple-400 text-lg">0</p>
-            </div>
+        <div class="mb-6 mt-6">
+            <span class="text-xl font-bold" style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.5rem;">📚</span>English<span style="color: var(--accent-text);">.</span></span>
+            <p class="text-xs mt-1" style="color: var(--text-muted);" data-i18n="app_subtitle">Flashcards Pro</p>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="#" onclick="navigateMobile('flashcards')" class="mobile-nav-link active-mobile" data-mobile-nav="flashcards"><i class="fas fa-layer-group w-5 text-center"></i><span data-i18n="nav_flashcards">Cartes de Vocabulaire</span></a>
+            <a href="#" onclick="navigateMobile('quiz')" class="mobile-nav-link" data-mobile-nav="quiz"><i class="fas fa-brain w-5 text-center"></i><span data-i18n="nav_quiz">Quiz de Traduction</span></a>
+            <a href="#" onclick="navigateMobile('stats')" class="mobile-nav-link" data-mobile-nav="stats"><i class="fas fa-chart-line w-5 text-center"></i><span data-i18n="nav_stats">Statistiques</span></a>
+            <a href="#" onclick="navigateMobile('dictionary')" class="mobile-nav-link" data-mobile-nav="dictionary"><i class="fas fa-book-open w-5 text-center"></i><span data-i18n="nav_dictionary">Dictionnaire</span></a>
+        </nav>
+        <hr style="border-color: var(--border-color); margin: 1.5rem 0;">
+        <div class="flex items-center justify-around">
+            <div class="text-center"><p class="text-xs uppercase tracking-wider" style="color: var(--text-muted);">🔥 <span data-i18n="streak">Série</span></p><p id="mobile-streak-counter" class="font-bold text-xl" style="color: var(--accent-text);">0</p></div>
+            <div class="w-px h-10" style="background-color: var(--border-color);"></div>
+            <div class="text-center"><p class="text-xs uppercase tracking-wider" style="color: var(--text-muted);">⭐ <span data-i18n="score">Score</span></p><p id="mobile-total-score" class="font-bold text-xl" style="color: var(--accent-text);">0</p></div>
+        </div>
+        <div class="mobile-lang-switcher">
+            <span data-i18n="language_label">Langue :</span>
+            <button onclick="setLanguage('fr')" id="mobile-lang-fr-btn" class="lang-btn active">FR</button>
+            <button onclick="setLanguage('en')" id="mobile-lang-en-btn" class="lang-btn">EN</button>
+        </div>
+        <div class="mt-3 pt-3 border-t" style="border-color: var(--border-color);">
+            <button onclick="toggleTheme()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all" style="background-color: var(--bg-tertiary); color: var(--text-primary);"><span id="mobile-theme-icon">🌙</span><span id="mobile-theme-text" class="text-sm font-medium" data-i18n="dark_mode">Mode sombre</span></button>
         </div>
     </div>
 
-    <!-- Conteneur principal -->
-    <div class="relative z-10 min-h-screen flex flex-col">
-        
-        <!-- ==================== HEADER ==================== -->
-        <header class="glass sticky top-0 z-50 border-b border-white/5">
-            <div class="max-w-6xl mx-auto px-4 py-3">
-                <div class="flex items-center justify-between">
-                    
-                    <!-- Logo -->
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-purple-500/20">
-                            📚
-                        </div>
-                        <div>
-                            <h1 class="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                                English Flashcards
-                            </h1>
-                            <p class="text-[10px] text-gray-500">Pro Edition</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Navigation Desktop -->
-                    <nav class="hidden lg:flex items-center gap-1 bg-white/[0.03] rounded-2xl p-1 border border-white/5">
-                        <button onclick="showSection('flashcards')" data-nav="flashcards" 
-                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-white/10 text-white">
-                            <i class="fas fa-layer-group text-xs"></i>
-                            Cartes
-                        </button>
-                        <button onclick="showSection('quiz')" data-nav="quiz" 
-                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                            <i class="fas fa-brain text-xs"></i>
-                            Quiz
-                        </button>
-                        <button onclick="showSection('stats')" data-nav="stats" 
-                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                            <i class="fas fa-chart-line text-xs"></i>
-                            Stats
-                        </button>
-                        <button onclick="showSection('dictionary')" data-nav="dictionary" 
-                                class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                            <i class="fas fa-book-open text-xs"></i>
-                            Dico
-                        </button>
-                    </nav>
-                    
-                    <!-- Score rapide (Desktop) -->
-                    <div class="hidden sm:flex items-center gap-3 bg-white/[0.03] rounded-2xl px-4 py-2 border border-white/5">
-                        <div class="text-center">
-                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">Série</p>
-                            <p id="streak-counter" class="font-bold text-amber-400">0</p>
-                        </div>
-                        <div class="w-px h-5 bg-white/10"></div>
-                        <div class="text-center">
-                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">Score</p>
-                            <p id="total-score" class="font-bold text-purple-400">0</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Bouton Hamburger (Mobile) -->
-                    <button id="hamburger-btn" onclick="toggleMobileMenu()" 
-                            class="lg:hidden relative z-50 flex flex-col gap-1.5 p-2 rounded-xl hover:bg-white/5 transition-colors"
-                            aria-label="Menu de navigation">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
+    <!-- Header -->
+    <header class="sticky top-0 z-40 border-b-2 transition-colors duration-300" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+        <div class="flex justify-between items-center h-20 px-4 lg:px-6 max-w-7xl mx-auto">
+            <a href="#" onclick="showSection('flashcards'); return false;" class="hover:opacity-80 transition-opacity flex items-center gap-2.5" style="text-decoration:none;color:inherit;">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style="background-color: var(--accent-light);">📚</div>
+                <div><h1 class="text-lg sm:text-xl lg:text-2xl font-bold leading-tight">English<span style="color: var(--accent-text);">.</span></h1><p class="text-[10px] leading-tight" style="color: var(--text-muted);" data-i18n="app_subtitle">Flashcards Pro</p></div>
+            </a>
+            <nav class="hidden lg:flex lg:gap-2 xl:gap-3">
+                <button onclick="showSection('flashcards')" data-nav="flashcards" class="nav-btn active"><i class="fas fa-layer-group text-sm"></i><span data-i18n="nav_flashcards_short">Cartes</span></button>
+                <button onclick="showSection('quiz')" data-nav="quiz" class="nav-btn"><i class="fas fa-brain text-sm"></i><span data-i18n="nav_quiz_short">Quiz</span></button>
+                <button onclick="showSection('stats')" data-nav="stats" class="nav-btn"><i class="fas fa-chart-line text-sm"></i><span data-i18n="nav_stats_short">Stats</span></button>
+                <button onclick="showSection('dictionary')" data-nav="dictionary" class="nav-btn"><i class="fas fa-book-open text-sm"></i><span data-i18n="nav_dictionary_short">Dico</span></button>
+            </nav>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="hidden sm:flex items-center gap-1">
+                    <button onclick="setLanguage('fr')" id="lang-fr-btn" class="lang-btn active">FR</button>
+                    <button onclick="setLanguage('en')" id="lang-en-btn" class="lang-btn">EN</button>
                 </div>
+                <div class="flex sm:hidden items-center gap-1">
+                    <button onclick="setLanguage('fr')" id="mobile-header-lang-fr-btn" class="lang-btn active">FR</button>
+                    <button onclick="setLanguage('en')" id="mobile-header-lang-en-btn" class="lang-btn">EN</button>
+                </div>
+                <div class="hidden md:flex items-center gap-3 px-4 py-2 rounded-xl" style="background-color: var(--bg-tertiary);">
+                    <div class="text-center"><p class="text-[10px] uppercase tracking-wider" style="color: var(--text-muted);"><span data-i18n="streak_short">Série</span></p><p id="streak-counter" class="font-bold text-sm" style="color: var(--accent-text);">0</p></div>
+                    <div class="w-px h-6" style="background-color: var(--border-color);"></div>
+                    <div class="text-center"><p class="text-[10px] uppercase tracking-wider" style="color: var(--text-muted);"><span data-i18n="score_short">Score</span></p><p id="total-score" class="font-bold text-sm" style="color: var(--accent-text);">0</p></div>
+                </div>
+                <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-110 flex-shrink-0" style="background-color: var(--bg-tertiary);" aria-label="Changer le thème"><span id="desktop-theme-icon">🌙</span></button>
+                <button id="menuBurger" class="lg:hidden burger-btn flex-shrink-0" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- ==================== MAIN CONTENT ==================== -->
-        <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-6 md:py-10">
+    <!-- Main Content -->
+    <main class="px-4 lg:px-6 py-8 md:py-12 max-w-7xl mx-auto">
+        
+        <!-- Flashcards Section -->
+        <section id="flashcards-section" class="animate-fade-in">
+            <div class="text-center mb-8 md:mb-10">
+                <span class="section-badge">📝 <span data-i18n="section_vocabulary">VOCABULAIRE</span></span>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-3"><span data-i18n="flashcards_title_part1">Cartes de</span> <span style="color: var(--accent-text);" data-i18n="flashcards_title_part2">Mémorisation</span></h2>
+                <p style="color: var(--text-secondary);" class="text-sm sm:text-base" data-i18n="flashcards_subtitle">Cliquez sur la carte pour voir la traduction</p>
+                <p class="text-xs mt-2" style="color: var(--text-muted);"><span data-i18n="word">Mot</span> <span id="current-card-number" class="font-bold" style="color: var(--accent-text);">1</span> <span data-i18n="on">sur</span> <span id="total-cards">3000+</span></p>
+            </div>
             
-            <!-- ========== SECTION FLASHCARDS ========== -->
-            <section id="flashcards-section" class="animate-fade-in">
-                <div class="text-center mb-6 md:mb-8">
-                    <span class="inline-block bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-indigo-500/20">
-                        📝 VOCABULAIRE
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                        Cartes de <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Mémorisation</span>
-                    </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Cliquez sur la carte pour voir la traduction</p>
-                    <p class="text-xs text-gray-600 mt-2">
-                        Mot <span id="current-card-number" class="text-purple-400 font-bold">1</span> sur <span id="total-cards">3000+</span>
-                    </p>
-                </div>
-                
-                <!-- Carte 3D -->
-                <div class="flex justify-center mb-6 md:mb-8">
-                    <div class="card-3d w-[280px] h-[180px] sm:w-[360px] sm:h-[220px] md:w-[440px] md:h-[260px] cursor-pointer" onclick="flipCard()">
-                        <div id="card-inner" class="card-inner relative w-full h-full">
-                            <!-- Face Anglais -->
-                            <div class="card-face absolute inset-0 flex flex-col items-center justify-center shadow-2xl shadow-indigo-500/10" 
-                                 style="background: linear-gradient(145deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);">
-                                <div class="absolute top-4 right-4 w-20 h-20 bg-white/3 rounded-full"></div>
-                                <div class="absolute bottom-4 left-4 w-16 h-16 bg-pink-500/5 rounded-full"></div>
-                                <span class="relative text-xs font-semibold text-indigo-300/70 uppercase tracking-widest mb-3">English</span>
-                                <h3 id="english-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center"></h3>
-                                <div class="absolute bottom-6 right-6 text-white/15 text-sm">
-                                    <i class="fas fa-sync-alt"></i>
-                                </div>
-                            </div>
-                            <!-- Face Français -->
-                            <div class="card-face card-back absolute inset-0 flex flex-col items-center justify-center shadow-2xl shadow-pink-500/10"
-                                 style="background: linear-gradient(145deg, #4c0519 0%, #831843 40%, #be185d 100%);">
-                                <div class="absolute top-4 left-4 w-20 h-20 bg-white/3 rounded-full"></div>
-                                <div class="absolute bottom-4 right-4 w-16 h-16 bg-indigo-500/5 rounded-full"></div>
-                                <span class="relative text-xs font-semibold text-pink-300/70 uppercase tracking-widest mb-3">Français</span>
-                                <h3 id="french-word" class="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center"></h3>
-                                <span id="category-badge" class="relative text-xs bg-white/10 px-3 py-1 rounded-full mt-3 font-medium"></span>
-                            </div>
+            <div class="flex justify-center mb-8 md:mb-10">
+                <div class="card-3d w-[280px] h-[180px] sm:w-[380px] sm:h-[230px] md:w-[460px] md:h-[270px] cursor-pointer" onclick="flipCard()">
+                    <div id="card-inner" class="card-inner relative w-full h-full">
+                        <div class="card-face absolute inset-0 flex flex-col items-center justify-center" style="background: var(--card-front);">
+                            <span class="relative text-xs font-semibold uppercase tracking-widest mb-4" style="color: var(--card-front-text);" data-i18n="english_label">English</span>
+                            <h3 id="english-word" class="relative text-3xl sm:text-4xl md:text-6xl font-bold text-white px-6 text-center"></h3>
+                        </div>
+                        <div class="card-face card-back absolute inset-0 flex flex-col items-center justify-center" style="background: var(--card-back);">
+                            <span class="relative text-xs font-semibold uppercase tracking-widest mb-4" style="color: var(--card-back-text);" data-i18n="french_label">Français</span>
+                            <h3 id="french-word" class="relative text-3xl sm:text-4xl md:text-6xl font-bold text-white px-6 text-center"></h3>
+                            <span id="category-badge" class="relative text-xs bg-white/10 px-4 py-1.5 rounded-full mt-4 font-medium" style="color: var(--card-back-text);"></span>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Contrôles -->
-                <div class="flex justify-center gap-2 sm:gap-3 flex-wrap">
-                    <button onclick="flipCard()" 
-                            class="glass-card px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white">
-                        <i class="fas fa-sync-alt text-xs"></i>
-                        <span class="hidden xs:inline">Retourner</span>
-                    </button>
-                    <button onclick="previousCard()" 
-                            class="glass-card px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white">
-                        <i class="fas fa-chevron-left text-xs"></i>
-                        <span class="hidden xs:inline">Précédent</span>
-                    </button>
-                    <button onclick="markAsKnown()" 
-                            class="btn-shimmer bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-emerald-500/20">
-                        <i class="fas fa-check text-xs"></i>
-                        Je sais !
-                    </button>
-                    <button onclick="nextCard()" 
-                            class="btn-shimmer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-lg shadow-purple-500/20">
-                        <span class="hidden xs:inline">Suivant</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </button>
-                </div>
-                
-                <!-- Barre de progression -->
-                <div class="mt-8 md:mt-10 max-w-md mx-auto">
-                    <div class="flex justify-between text-xs text-gray-500 mb-2">
-                        <span>Progression</span>
-                        <span id="progress-percentage" class="text-purple-400 font-semibold">0%</span>
-                    </div>
-                    <div class="h-2 bg-white/5 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="h-full rounded-full transition-all duration-700" 
-                             style="width: 0%; background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ========== SECTION QUIZ ========== -->
-            <section id="quiz-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 md:mb-8">
-                    <span class="inline-block bg-amber-500/10 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-amber-500/20">
-                        🎯 QUIZ
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                        Test de <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Traduction</span>
-                    </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Traduisez le mot en français</p>
-                </div>
-                
-                <div class="max-w-lg mx-auto glass-card rounded-3xl p-6 sm:p-8 md:p-10 text-center">
-                    <p class="text-xs text-gray-500 mb-4">Question <span id="quiz-question-number" class="text-purple-400 font-bold">1</span>/10</p>
-                    <p class="text-sm text-gray-400 mb-2">Traduisez :</p>
-                    <h3 id="quiz-word" class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"></h3>
-                    
-                    <input type="text" id="quiz-answer" placeholder="Votre réponse..." 
-                           class="w-full max-w-xs bg-white/5 border-2 border-white/10 rounded-2xl px-5 py-3 text-base sm:text-lg text-center focus:outline-none focus:border-purple-400/50 transition-all placeholder-gray-600 text-white mb-5"
-                           onkeypress="if(event.key === 'Enter') checkQuizAnswer()" autocomplete="off">
-                    
-                    <button onclick="checkQuizAnswer()" 
-                            class="btn-shimmer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 sm:px-8 py-3 rounded-2xl font-bold text-base sm:text-lg transition-all hover:scale-105 shadow-xl shadow-purple-500/20">
-                        <i class="fas fa-check-circle mr-2"></i> Vérifier
-                    </button>
-                    
-                    <div id="quiz-result" class="mt-5 sm:mt-6 text-lg sm:text-xl font-bold min-h-8"></div>
-                    
-                    <button id="next-quiz-btn" onclick="nextQuizQuestion()" 
-                            class="hidden mt-4 bg-white/5 hover:bg-white/10 px-5 sm:px-6 py-2.5 rounded-xl transition-all text-sm font-medium">
-                        Question suivante <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-            </section>
-
-            <!-- ========== SECTION STATISTIQUES ========== -->
-            <section id="stats-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 md:mb-8">
-                    <span class="inline-block bg-rose-500/10 text-rose-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-rose-500/20">
-                        📊 STATISTIQUES
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                        Votre <span class="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">Progression</span>
-                    </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">Suivez vos performances</p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
-                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
-                        <div class="text-2xl sm:text-3xl mb-3">📝</div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-purple-400" id="stats-words-learned">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Mots appris</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
-                        <div class="text-2xl sm:text-3xl mb-3">🎯</div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-emerald-400" id="stats-quiz-correct">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Quiz réussis</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center">
-                        <div class="text-2xl sm:text-3xl mb-3">🔥</div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-amber-400" id="stats-streak">0</h3>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1">Meilleure série</p>
-                    </div>
-                </div>
-                
-                <div class="glass-card rounded-3xl p-6 sm:p-8 text-center max-w-sm mx-auto">
-                    <p class="text-gray-400 mb-2 text-sm sm:text-base">Niveau actuel</p>
-                    <div id="level-badge" class="text-5xl sm:text-6xl mb-3"></div>
-                    <p id="level-text" class="text-xl sm:text-2xl font-bold text-purple-400"></p>
-                </div>
-            </section>
-
-            <!-- ========== SECTION DICTIONNAIRE ========== -->
-            <section id="dictionary-section" class="hidden animate-fade-in">
-                <div class="text-center mb-6 md:mb-8">
-                    <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-cyan-500/20">
-                        📖 DICTIONNAIRE
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                        <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Tous les mots</span>
-                    </h2>
-                    <p class="text-gray-500 text-sm sm:text-base">3000+ mots à explorer</p>
-                </div>
-                
-                <div class="max-w-md mx-auto mb-6 sm:mb-8">
-                    <div class="relative">
-                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
-                        <input type="text" id="dictionary-search" placeholder="Rechercher un mot..." 
-                               class="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-3 pl-11 pr-4 text-sm sm:text-base focus:outline-none focus:border-cyan-400/50 transition-all placeholder-gray-600 text-white"
-                               onkeyup="searchDictionary()" autocomplete="off">
-                    </div>
-                </div>
-                
-                <div id="dictionary-words" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-h-[50vh] sm:max-h-[60vh] overflow-y-auto p-1">
-                    <!-- Généré dynamiquement -->
-                </div>
-            </section>
-
-        </main>
-
-        <!-- ==================== FOOTER ==================== -->
-        <footer class="border-t border-white/5 mt-auto">
-            <div class="max-w-6xl mx-auto px-4 py-5 sm:py-6">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
-                    
-                    <!-- Signature développeur -->
-                    <div>
-                        <p class="text-xs text-gray-500">
-                            © 2026 <span class="text-purple-400 font-semibold">English Flashcards Pro</span>
-                        </p>
-                        <p class="text-xs text-gray-600 mt-0.5">
-                            Développé par <span class="text-gray-300 font-medium">Ir. Cosmas MUSAFIRI MUGONGO</span>
-                        </p>
-                    </div>
-                    
-                    <!-- Technologies -->
-                    <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2">
-                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
-                            <i class="fab fa-html5 text-orange-400 mr-1"></i> HTML5
-                        </span>
-                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
-                            <i class="fab fa-css3-alt text-blue-400 mr-1"></i> Tailwind CSS
-                        </span>
-                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
-                            <i class="fab fa-js text-yellow-400 mr-1"></i> JavaScript
-                        </span>
-                        <span class="text-[10px] bg-white/5 px-2 py-1 rounded-lg text-gray-500 border border-white/5">
-                            <i class="fab fa-git-alt text-red-400 mr-1"></i> Git/GitHub
-                        </span>
-                    </div>
-                    
-                    <!-- Raccourcis -->
-                    <p class="text-[10px] text-gray-600">
-                        Raccourcis : 
-                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">Espace</kbd>
-                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">← →</kbd>
-                        <kbd class="bg-white/5 px-1.5 py-0.5 rounded text-[10px]">Entrée</kbd>
-                    </p>
                 </div>
             </div>
-        </footer>
-        
+            
+            <div class="flex justify-center gap-2 sm:gap-4 flex-wrap">
+                <button onclick="flipCard()" class="btn btn-outline text-xs sm:text-sm" data-i18n="flip">Retourner</button>
+                <button onclick="previousCard()" class="btn btn-outline text-xs sm:text-sm" data-i18n="previous">Précédent</button>
+                <button onclick="markAsKnown()" class="btn btn-success text-xs sm:text-sm" data-i18n="i_know">Je sais !</button>
+                <button onclick="nextCard()" class="btn btn-primary text-xs sm:text-sm" data-i18n="next">Suivant</button>
+            </div>
+            
+            <div class="mt-10 max-w-md mx-auto">
+                <div class="flex justify-between text-xs mb-2" style="color: var(--text-muted);"><span data-i18n="progress">Progression</span><span id="progress-percentage" class="font-semibold" style="color: var(--accent-text);">0%</span></div>
+                <div class="progress-bar"><div id="progress-bar" class="progress-fill" style="width: 0%;"></div></div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="hidden animate-fade-in">
+            <div class="text-center mb-8 md:mb-10">
+                <span class="section-badge">🎯 <span data-i18n="section_quiz">QUIZ</span></span>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-3"><span data-i18n="quiz_title_part1">Test de</span> <span style="color: var(--accent-text);" data-i18n="quiz_title_part2">Traduction</span></h2>
+                <p style="color: var(--text-secondary);" class="text-sm sm:text-base" data-i18n="quiz_subtitle">Traduisez le mot en français</p>
+            </div>
+            <div class="max-w-lg mx-auto rounded-3xl p-6 sm:p-8 md:p-10 text-center shadow-lg" style="background-color: var(--bg-primary); border: 1.5px solid var(--border-color);">
+                <p class="text-xs mb-4" style="color: var(--text-muted);"><span data-i18n="question">Question</span> <span id="quiz-question-number" class="font-bold" style="color: var(--accent-text);">1</span>/10</p>
+                <p class="text-sm mb-2" style="color: var(--text-secondary);" data-i18n="translate">Traduisez :</p>
+                <h3 id="quiz-word" class="text-3xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8" style="color: var(--text-primary);"></h3>
+                <input type="text" id="quiz-answer" data-i18n-placeholder="your_answer" placeholder="Votre réponse..." class="input-field max-w-xs mx-auto text-center text-lg mb-5" onkeypress="if(event.key === 'Enter') checkQuizAnswer()" autocomplete="off">
+                <button onclick="checkQuizAnswer()" class="btn btn-primary px-6 sm:px-8 py-3.5 rounded-xl font-bold text-lg"><i class="fas fa-check-circle"></i> <span data-i18n="verify">Vérifier</span></button>
+                <div id="quiz-result" class="mt-6 text-xl font-bold min-h-8"></div>
+                <button id="next-quiz-btn" onclick="nextQuizQuestion()" class="hidden mt-4 btn btn-outline" data-i18n="next_question">Question suivante <i class="fas fa-arrow-right ml-1"></i></button>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats-section" class="hidden animate-fade-in">
+            <div class="text-center mb-8 md:mb-10">
+                <span class="section-badge">📊 <span data-i18n="section_stats">STATISTIQUES</span></span>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-3"><span data-i18n="stats_title_part1">Votre</span> <span style="color: var(--accent-text);" data-i18n="stats_title_part2">Progression</span></h2>
+                <p style="color: var(--text-secondary);" class="text-sm sm:text-base" data-i18n="stats_subtitle">Suivez vos performances</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
+                <div class="stat-card"><div class="stat-icon">📝</div><h3 class="text-3xl font-bold" style="color: var(--accent-text);" id="stats-words-learned">0</h3><p class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="words_learned">Mots appris</p></div>
+                <div class="stat-card"><div class="stat-icon">🎯</div><h3 class="text-3xl font-bold" style="color: var(--success);" id="stats-quiz-correct">0</h3><p class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="quiz_passed">Quiz réussis</p></div>
+                <div class="stat-card"><div class="stat-icon">🔥</div><h3 class="text-3xl font-bold" style="color: #f59e0b;" id="stats-streak">0</h3><p class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="best_streak">Meilleure série</p></div>
+            </div>
+            <div class="max-w-sm mx-auto rounded-3xl p-8 text-center shadow-lg" style="background-color: var(--bg-primary); border: 1.5px solid var(--border-color);">
+                <p style="color: var(--text-secondary);" class="mb-3" data-i18n="current_level">Niveau actuel</p>
+                <div id="level-badge" class="text-6xl mb-4"></div>
+                <p id="level-text" class="text-2xl font-bold" style="color: var(--accent-text);"></p>
+            </div>
+        </section>
+
+        <!-- Dictionary Section -->
+        <section id="dictionary-section" class="hidden animate-fade-in">
+            <div class="text-center mb-8 md:mb-10">
+                <span class="section-badge">📖 <span data-i18n="section_dictionary">DICTIONNAIRE</span></span>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-3"><span style="color: var(--accent-text);" data-i18n="dictionary_title">Tous les mots</span></h2>
+                <p style="color: var(--text-secondary);" class="text-sm sm:text-base" data-i18n="dictionary_subtitle">3000+ mots à explorer</p>
+            </div>
+            <div class="max-w-md mx-auto mb-8">
+                <div class="relative"><i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i><input type="text" id="dictionary-search" data-i18n-placeholder="search_word" placeholder="Rechercher un mot..." class="input-field pl-12" onkeyup="searchDictionary()" autocomplete="off"></div>
+            </div>
+            <div id="dictionary-words" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[55vh] overflow-y-auto p-1"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-5 px-4 text-center transition-colors duration-300 border-t" style="background-color: var(--bg-accent); border-color: var(--border-color);">
+        <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><span class="font-bold" style="color: var(--accent-text);">English Flashcards Pro</span> — <span data-i18n="developed_by">Développé par</span> <span class="font-medium" style="color: var(--text-primary);">Ir. Cosmas MUSAFIRI MUGONGO</span> © <span id="current-year">2026</span></p>
+    </footer>
+
+    <!-- Bannière installation PWA -->
+    <div id="installBanner" class="install-banner">
+        <div class="install-banner-content">
+            <div class="install-banner-icon">📚</div>
+            <div class="install-banner-text"><h4 data-i18n="install_title">Installer l'application</h4><p data-i18n="install_subtitle">Ajoutez sur l'écran d'accueil pour un accès rapide</p></div>
+            <div class="install-banner-actions"><button onclick="dismissInstall()" class="install-btn install-btn-secondary" data-i18n="install_later">Plus tard</button><button id="installBtn" class="install-btn install-btn-primary" data-i18n="install_now">Installer</button></div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
-    
-    <!-- Script pour le menu hamburger -->
-    <script>
-        // ============================================
-        // MENU HAMBURGER MOBILE
-        // ============================================
-        let isMenuOpen = false;
-        
-        function toggleMobileMenu() {
-            isMenuOpen = !isMenuOpen;
-            const overlay = document.getElementById('mobile-menu-overlay');
-            const hamburger = document.getElementById('hamburger-btn');
-            
-            if (isMenuOpen) {
-                overlay.classList.add('active');
-                hamburger.classList.add('hamburger-active');
-                document.body.classList.add('no-scroll');
-            } else {
-                overlay.classList.remove('active');
-                hamburger.classList.remove('hamburger-active');
-                document.body.classList.remove('no-scroll');
-            }
-        }
-        
-        function navigateMobile(sectionName) {
-            // Fermer le menu
-            isMenuOpen = false;
-            document.getElementById('mobile-menu-overlay').classList.remove('active');
-            document.getElementById('hamburger-btn').classList.remove('hamburger-active');
-            document.body.classList.remove('no-scroll');
-            
-            // Mettre à jour les classes actives dans le menu mobile
-            document.querySelectorAll('.mobile-menu-item').forEach(item => {
-                item.classList.remove('active-mobile');
-                if (item.dataset.mobileNav === sectionName) {
-                    item.classList.add('active-mobile');
-                }
-            });
-            
-            // Naviguer vers la section
-            showSection(sectionName);
-        }
-        
-        // Synchroniser les scores mobiles
-        function syncMobileScores() {
-            const streak = document.getElementById('streak-counter')?.textContent || '0';
-            const score = document.getElementById('total-score')?.textContent || '0';
-            const mobileStreak = document.getElementById('mobile-streak-counter');
-            const mobileScore = document.getElementById('mobile-total-score');
-            if (mobileStreak) mobileStreak.textContent = streak;
-            if (mobileScore) mobileScore.textContent = score;
-        }
-        
-        // Observer les changements de score
-        setInterval(syncMobileScores, 1000);
-        
-        // Fermer le menu avec la touche Echap
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isMenuOpen) {
-                toggleMobileMenu();
-            }
-        });
-        
-        console.log('📱 Menu hamburger mobile initialisé');
-    </script>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+(function() {
+    // Service Worker
+    if ('serviceWorker' in navigator) {
+        const swCode = `const CACHE_NAME='english-flashcards-v3';const ASSETS=['./','./index.html','./script.js'];self.addEventListener('install',(e)=>{e.waitUntil(caches.open(CACHE_NAME).then((c)=>c.addAll(ASSETS)));self.skipWaiting();});self.addEventListener('activate',(e)=>{e.waitUntil(caches.keys().then((k)=>Promise.all(k.filter(key=>key!==CACHE_NAME).map(key=>caches.delete(key)))));self.clients.claim();});self.addEventListener('fetch',(e)=>{e.respondWith(caches.match(e.request).then((cached)=>cached||fetch(e.request).then((resp)=>{if(resp&&resp.status===200){const clone=resp.clone();caches.open(CACHE_NAME).then((c)=>c.put(e.request,clone));}return resp;})).catch(()=>caches.match('./index.html')));});`;
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).then(()=>console.log('✅ SW')).catch(()=>{});
+    }
+
+    // Bannière installation
+    let deferredPrompt;
+    const installBanner = document.getElementById('installBanner');
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; setTimeout(() => { if (installBanner) installBanner.classList.add('show'); }, 3000); });
+    if (installBtn) installBtn.addEventListener('click', async () => { if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; if (installBanner) installBanner.classList.remove('show'); } });
+    window.dismissInstall = function() { if (installBanner) installBanner.classList.remove('show'); };
+    window.addEventListener('appinstalled', () => { if (installBanner) installBanner.classList.remove('show'); deferredPrompt = null; });
+    if (window.matchMedia('(display-mode: standalone)').matches) { if (installBanner) installBanner.style.display = 'none'; }
+
+    // Traductions
+    const translations = {
+        fr: { app_subtitle:"Flashcards Pro",nav_flashcards:"Cartes de Vocabulaire",nav_quiz:"Quiz de Traduction",nav_stats:"Statistiques",nav_dictionary:"Dictionnaire",nav_flashcards_short:"Cartes",nav_quiz_short:"Quiz",nav_stats_short:"Stats",nav_dictionary_short:"Dico",streak:"Série",score:"Score",streak_short:"Série",score_short:"Score",dark_mode:"Mode sombre",light_mode:"Mode clair",language_label:"Langue :",section_vocabulary:"VOCABULAIRE",section_quiz:"QUIZ",section_stats:"STATISTIQUES",section_dictionary:"DICTIONNAIRE",flashcards_title_part1:"Cartes de",flashcards_title_part2:"Mémorisation",flashcards_subtitle:"Cliquez sur la carte pour voir la traduction",word:"Mot",on:"sur",english_label:"English",french_label:"Français",flip:"Retourner",previous:"Précédent",i_know:"Je sais !",next:"Suivant",progress:"Progression",quiz_title_part1:"Test de",quiz_title_part2:"Traduction",quiz_subtitle:"Traduisez le mot en français",question:"Question",translate:"Traduisez :",your_answer:"Votre réponse...",verify:"Vérifier",next_question:"Question suivante",stats_title_part1:"Votre",stats_title_part2:"Progression",stats_subtitle:"Suivez vos performances",words_learned:"Mots appris",quiz_passed:"Quiz réussis",best_streak:"Meilleure série",current_level:"Niveau actuel",dictionary_title:"Tous les mots",dictionary_subtitle:"3000+ mots à explorer",search_word:"Rechercher un mot...",developed_by:"Développé par",install_title:"Installer l'application",install_subtitle:"Ajoutez sur l'écran d'accueil",install_now:"Installer",install_later:"Plus tard" },
+        en: { app_subtitle:"Flashcards Pro",nav_flashcards:"Vocabulary Cards",nav_quiz:"Translation Quiz",nav_stats:"Statistics",nav_dictionary:"Dictionary",nav_flashcards_short:"Cards",nav_quiz_short:"Quiz",nav_stats_short:"Stats",nav_dictionary_short:"Dict",streak:"Streak",score:"Score",streak_short:"Streak",score_short:"Score",dark_mode:"Dark Mode",light_mode:"Light Mode",language_label:"Language:",section_vocabulary:"VOCABULARY",section_quiz:"QUIZ",section_stats:"STATISTICS",section_dictionary:"DICTIONARY",flashcards_title_part1:"Memory",flashcards_title_part2:"Flashcards",flashcards_subtitle:"Click the card to see the translation",word:"Word",on:"of",english_label:"English",french_label:"French",flip:"Flip",previous:"Previous",i_know:"I Know!",next:"Next",progress:"Progress",quiz_title_part1:"Translation",quiz_title_part2:"Quiz",quiz_subtitle:"Translate the word to French",question:"Question",translate:"Translate:",your_answer:"Your answer...",verify:"Check",next_question:"Next Question",stats_title_part1:"Your",stats_title_part2:"Progress",stats_subtitle:"Track your performance",words_learned:"Words Learned",quiz_passed:"Quizzes Passed",best_streak:"Best Streak",current_level:"Current Level",dictionary_title:"All Words",dictionary_subtitle:"3000+ words to explore",search_word:"Search a word...",developed_by:"Developed by",install_title:"Install App",install_subtitle:"Add to home screen for quick access",install_now:"Install",install_later:"Later" }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'fr';
+    window.setLanguage = function(lang) { currentLang = lang; localStorage.setItem('lang', lang); updateLanguage(); updateAllLangButtons(); };
+    function updateLanguage() { document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[currentLang] && translations[currentLang][key]) el.textContent = translations[currentLang][key]; }); document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const key = el.getAttribute('data-i18n-placeholder'); if (translations[currentLang] && translations[currentLang][key]) el.setAttribute('placeholder', translations[currentLang][key]); }); }
+    function updateAllLangButtons() { document.querySelectorAll('#lang-fr-btn, #mobile-header-lang-fr-btn, #mobile-lang-fr-btn').forEach(btn => { if (btn) btn.classList.toggle('active', currentLang === 'fr'); }); document.querySelectorAll('#lang-en-btn, #mobile-header-lang-en-btn, #mobile-lang-en-btn').forEach(btn => { if (btn) btn.classList.toggle('active', currentLang === 'en'); }); }
+
+    // Thème
+    const body = document.body, html = document.documentElement;
+    let isDarkTheme = localStorage.getItem('theme') === 'dark';
+    if (isDarkTheme) html.setAttribute('data-theme', 'dark');
+    updateThemeIcons();
+    window.toggleTheme = function() { isDarkTheme = !isDarkTheme; html.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light'); localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light'); updateThemeIcons(); };
+    function updateThemeIcons() { const dI = document.getElementById('desktop-theme-icon'), mI = document.getElementById('mobile-theme-icon'), mT = document.getElementById('mobile-theme-text'); if (dI) dI.textContent = isDarkTheme ? '☀️' : '🌙'; if (mI) mI.textContent = isDarkTheme ? '☀️' : '🌙'; if (mT) mT.textContent = translations[currentLang][isDarkTheme ? 'light_mode' : 'dark_mode']; }
+
+    // Menu mobile
+    const menuBurger = document.getElementById('menuBurger'), mobileMenu = document.getElementById('mobileMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
+    if (menuBurger && mobileMenu && menuOverlay && closeMenuBtn) {
+        function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); body.classList.add('menu-open'); menuBurger.classList.add('active'); menuBurger.setAttribute('aria-expanded', 'true'); }
+        function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); body.classList.remove('menu-open'); menuBurger.classList.remove('active'); menuBurger.setAttribute('aria-expanded', 'false'); }
+        menuBurger.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    }
+    window.navigateMobile = function(sn) { document.querySelectorAll('.mobile-nav-link').forEach(l => { l.classList.remove('active-mobile'); if (l.dataset.mobileNav === sn) l.classList.add('active-mobile'); }); if (typeof showSection === 'function') showSection(sn); if (mobileMenu && menuOverlay && menuBurger) { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); body.classList.remove('menu-open'); menuBurger.classList.remove('active'); menuBurger.setAttribute('aria-expanded', 'false'); } };
+
+    function syncMobileScores() { const s = document.getElementById('streak-counter')?.textContent || '0', sc = document.getElementById('total-score')?.textContent || '0'; const ms = document.getElementById('mobile-streak-counter'), msc = document.getElementById('mobile-total-score'); if (ms) ms.textContent = s; if (msc) msc.textContent = sc; }
+    setInterval(syncMobileScores, 500);
+
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) yearElement.textContent = new Date().getFullYear();
+
+    updateLanguage(); updateAllLangButtons();
+    window.getTranslation = function(key) { return translations[currentLang] && translations[currentLang][key] ? translations[currentLang][key] : key; };
+    window.getCurrentLang = function() { return currentLang; };
+    console.log('✅ English Flashcards Pro | v3.1 | ' + currentLang.toUpperCase());
+})();
+</script>
 </body>
 </html>

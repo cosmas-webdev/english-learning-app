@@ -1,21 +1,50 @@
 {
     "name": "English Flashcards Pro",
     "short_name": "Flashcards",
-    "description": "Apprenez l'anglais avec 3000+ mots",
+    "description": "Application professionnelle de flashcards pour apprendre l'anglais avec 3000+ mots, quiz de traduction et suivi de progression.",
     "start_url": "/english-learning-app/",
+    "scope": "/english-learning-app/",
     "display": "standalone",
-    "background_color": "#0f0c29",
-    "theme_color": "#6366f1",
+    "orientation": "portrait-primary",
+    "background_color": "#ffffff",
+    "theme_color": "#0284c7",
+    "lang": "fr",
+    "dir": "ltr",
+    "categories": ["education", "productivity"],
+    "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%230284c7'/><text x='256' y='320' font-size='280' text-anchor='middle' fill='white' font-family='Arial,sans-serif'>📚</text></svg>",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
         },
         {
-            "src": "icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='30' fill='%230284c7'/><text x='96' y='125' font-size='110' text-anchor='middle' fill='white' font-family='Arial,sans-serif'>📚</text></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
         }
-    ]
+    ],
+    "shortcuts": [
+        {
+            "name": "Cartes de Vocabulaire",
+            "short_name": "Cartes",
+            "description": "Accéder aux flashcards",
+            "url": "/english-learning-app/?section=flashcards"
+        },
+        {
+            "name": "Quiz de Traduction",
+            "short_name": "Quiz",
+            "description": "Tester vos connaissances",
+            "url": "/english-learning-app/?section=quiz"
+        },
+        {
+            "name": "Statistiques",
+            "short_name": "Stats",
+            "description": "Voir votre progression",
+            "url": "/english-learning-app/?section=stats"
+        }
+    ],
+    "display_override": ["standalone", "minimal-ui", "browser"]
 }
